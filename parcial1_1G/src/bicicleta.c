@@ -2,12 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "utn.h"
-#include"bicicleta.h"
-
-
-
-
-
+#include "bicicleta.h"
 
 
 int menu(){
@@ -35,7 +30,6 @@ int menu(){
 
 
 
-
 int initBicicleta(eBicicleta lista[], int tam){
 	int retorno = 0;
 
@@ -53,6 +47,7 @@ int initBicicleta(eBicicleta lista[], int tam){
 
 	return retorno;
 }
+
 
 
 int buscarLibre(eBicicleta lista[], int tam){
@@ -99,19 +94,21 @@ int altaBicicleta(eBicicleta lista[], int tam, int* pId){
 					printf("Vuelva a ingresar dato.\n");
 				}
 
-				while(!get_NumEnte(&auxBicicleta.idTipo.iD, "1000) Rutera.\n1001)Carrera.\n1002)Mountain.\n1003)BMX.\nElija opcion: ", "Error. opcion debe ser entre 1000 a 1003", 1000, 1003)){
+
+
+				while(!get_NumEnte(&auxBicicleta.idTipo.iD, "\nTIPO:\n1000) Rutera.\n1001) Carrera.\n1002) Mountain.\n1003) BMX.\nElija opcion: ", "Error. opcion debe ser entre 1000 a 1003\n", 1000, 1003)){
 					printf("Vuelva a ingresar dato.\n");
 				}
 
-				while(!get_NumEnte(&auxBicicleta.rodado, "1) Rodado 16.\n2) Rodado 26.\n3) Rodado 27.\n4) Rodado 29.\n", "Error. opcion debe ser entre 1 a 4", 1, 4)){
+				while(!get_NumEnte(&auxBicicleta.rodado, "\nRODADO:\n1) Rodado 16.\n2) Rodado 26.\n3) Rodado 27.\n4) Rodado 29.\nEscriba rodado de eleccion: ", "Error. opcion debe ser entre 16, 26, 27 o 29\n", 16, 29)){
 					printf("Vuelva a ingresar dato.\n");
 				}
 
-				while(!get_NumEnte(&auxBicicleta.idColor.idColor, "5000) Gris.\n5001)Blanco.\n5002)Azul.\n5003)Negro\n5004)Rojo.\nElija opcion","Error. opcion debe ser entre 5000 a 5004\n",5000, 5004)){
+				while(!get_NumEnte(&auxBicicleta.idColor.id, "\nCOLOR:\n5000) Gris.\n5001) Blanco.\n5002) Azul.\n5003) Negro\n5004) Rojo.\nElija opcion: ","Error. opcion debe ser entre 5000 a 5004\n",5000, 5004)){
 					printf("Vuelva a ingresar dato.\n");
 				}
 
-				while(!get_Caracter(&auxBicicleta.material, "a) Aluminio.\nc) Carbono.\n", "Error. Debe elejir entre 'a' o 'c'\n" ,'a','c')){
+				while(!get_Caracter(&auxBicicleta.material, "\nMATERIAL:\na) Aluminio.\nc) Carbono.\nElija opcion: ", "Error. Debe elejir entre 'a' o 'c'\n" ,'a','c')){
 					printf("Vuelva a ingresar dato.\n");
 				}
 
@@ -130,41 +127,95 @@ int altaBicicleta(eBicicleta lista[], int tam, int* pId){
 }
 
 
+int cargaDescripTipo(eTipo tipos[], int tamTip, int idTipo, char descripTipo[]){
+	int retorno = 0;
 
-void moatrarBicicleta(eBicicleta bicicleta){
+	if(tipos != NULL && descripTipo != NULL && tamTip > 0){
+
+		for(int i = 0; i < tamTip; i ++){
+
+			if(tipos[i].iD == idTipo){
+
+				strcpy(descripTipo, tipos[i].descripcion);
+				break;
+
+			}
+
+		}
+
+		retorno = 1;
+
+	}
+
+	return retorno;
+}
 
 
-	printf(" %d     %10s     %d         %2d         %d       %c\n", bicicleta.iD,
-			                                                        bicicleta.marca,
-															        bicicleta.idTipo.iD,
-															        bicicleta.rodado,
-															        bicicleta.idColor.idColor,
-															        bicicleta.material);
+int cargaDescripColor(eColor colores[], int tamCol, int idCol, char descripColor[]){
+int retorno = 0;
+
+	if(colores != NULL && descripColor != NULL && tamCol > 0){
+
+		for(int i = 0; i < tamCol; i ++){
+
+			if(colores[i].id == idCol){
+
+				strcpy(descripColor, colores[i].nombreColor);
+				break;
+
+			}
+
+		}
+
+		retorno = 1;
+
+	}
+
+	return retorno;
+}
+
+
+void moatrarBicicleta(eBicicleta bicicleta, eTipo tipos[], int tamTip, eColor colores[], int tamCol){
+	char descripTipo[20];
+	char descripColor[20];
+
+	cargaDescripTipo(tipos, tamTip, bicicleta.idTipo.iD, descripTipo);
+
+
+	cargaDescripColor(colores, tamCol, bicicleta.idColor.id, descripColor);
+
+
+	printf(" %2d   %10s      %10s                   %2d              %10s             %c\n", bicicleta.iD,
+			                                                                                 bicicleta.marca,
+																				             descripTipo,
+															                                 bicicleta.rodado,
+																					         descripColor,
+															                                 bicicleta.material);
 
 }
 
 
 
-int mostrarBicicletas(eBicicleta lista[], int tam){
+int mostrarBicicletas(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol){
 	int retorno = 0;
 	int flag = 1;
 
 	if(lista != NULL && tam > 0){
 
-		printf("============================================================================\n");
-		printf("\t         ***LISTA BICICLETAS***\n");
-		printf("----------------------------------------------------------------------------\n");
-		printf(" ID       MARCA         TIPO         RODADO        COLOR          MATERIAL \n");
-		printf("----------------------------------------------------------------------------\n");
+		printf("===================================================================================================\n");
+		printf("\t                        ***LISTA BICICLETAS***\n");
+		printf("---------------------------------------------------------------------------------------------------\n");
+		printf(" ID         MARCA             TIPO                RODADO               COLOR          MATERIAL \n");
+		printf("---------------------------------------------------------------------------------------------------\n");
 		for(int i = 0; i < tam; i ++){
 
 			if(!lista[i].isEmpty){
-				moatrarBicicleta(lista[i]);
+				moatrarBicicleta(lista[i], tipos, tamTip, colores, tamCol);
 				flag = 0;
 
 			}
 		}
-		printf("==========================================================\n");
+		printf("===================================================================================================\n");
 
 		if(flag){
 			printf("No hay bicicletas para mostrar\n");
@@ -178,7 +229,6 @@ int mostrarBicicletas(eBicicleta lista[], int tam){
 	return retorno;
 
 }
-
 
 
 
@@ -207,12 +257,11 @@ int buscarBicicleta(eBicicleta lista[], int tam, int iD){
 
 int menuModificar(){
 	int opcion;
-	printf("===================================\n");
-	printf("\t   ***MODIFICAR PERSONA***\n");
+
 	printf("\t1) Tipo.\n");
 	printf("\t2) Rodado.\n");
 	printf("\t3) Salir.\n");
-	printf("===================================\n");
+	printf("===================================================================================================\n");
 	while(!get_NumEnte(&opcion, "Ingrese opcion: ", "Error. Ingrese opcion(1 al 3)\n", 1, 3)){
 		printf("Intente de nuevo.\n");
 	}
@@ -222,7 +271,7 @@ int menuModificar(){
 
 
 
-int modificarBicicleta(eBicicleta lista[], int tam){
+int modificarBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol){
 	int retorno = 0;
 	int iD;
 	int indice;
@@ -232,26 +281,26 @@ int modificarBicicleta(eBicicleta lista[], int tam){
 
 	if(lista != NULL && tam > 0){
 
-		printf("============================================================================\n");
-		printf("\t      ***MODIFICAR BICICLETA***\n");
+		printf("===================================================================================================\n");
+		printf("\t                ***MODIFICAR BICICLETA***\n");
 		if(!get_NumEnte(&iD, "Ingrese id de la bicicleta: ", "Id no esta registrado. ", 1, 60000)){
 			printf("Intente de nuevo.\n");
 		}
 
 		indice = buscarBicicleta(lista, tam , iD);
 
-		if(indice <= 0){
-			printf("----------------------------------------------------------------------------\n");
-			printf(" ID       MARCA         TIPO         RODADO        COLOR          MATERIAL \n");
-			printf("----------------------------------------------------------------------------\n");
-			moatrarBicicleta(lista[indice]);
-			printf("============================================================================\n");
+		if(indice >= 0){
+			printf("---------------------------------------------------------------------------------------------------\n");
+			printf(" ID         MARCA             TIPO                RODADO               COLOR          MATERIAL \n");
+			printf("---------------------------------------------------------------------------------------------------\n");
+			moatrarBicicleta(lista[indice], tipos, tamTip, colores, tamCol);
+			printf("===================================================================================================\n");
 
 			switch(menuModificar()){
 
 			case 1:
 
-				while(!get_NumEnte(&auxTipoBici, "1000) Rutera.\n1001)Carrera.\n1002)Mountain.\n1003)BMX.\nElija opcion: ", "Error. opcion debe ser entre 1000 a 1003", 1000, 1003)){
+				while(!get_NumEnte(&auxTipoBici, "1000) Rutera.\n1001) Carrera.\n1002) Mountain.\n1003) BMX.\nElija opcion: ", "Error. opcion debe ser entre 1000 a 1003\n", 1000, 1003)){
 					printf("Vuelva a ingresar dato.\n");
 				}
 				lista[indice].idTipo.iD = auxTipoBici;
@@ -260,7 +309,7 @@ int modificarBicicleta(eBicicleta lista[], int tam){
 
 			case 2:
 
-				while(!get_NumEnte(&auxRodado, "1) Rodado 16.\n2) Rodado 26.\n3) Rodado 27.\n4) Rodado 29.\n", "Error. opcion debe ser entre 1 a 4", 1, 4)){
+				while(!get_NumEnte(&auxRodado, "1) Rodado 16.\n2) Rodado 26.\n3) Rodado 27.\n4) Rodado 29.\nElija opcion: ", "Error. opcion debe ser entre 1 a 4\n", 1, 4)){
 					printf("Vuelva a ingresar dato.\n");
 				}
 				lista[indice].rodado = auxRodado;
@@ -289,7 +338,7 @@ int modificarBicicleta(eBicicleta lista[], int tam){
 
 
 
-int bajaBicicleta(eBicicleta lista[], int tam){
+int bajaBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol){
 	int retorno = 0;
 	int iD;
 	int  indice;
@@ -297,8 +346,8 @@ int bajaBicicleta(eBicicleta lista[], int tam){
 
 	if(lista != NULL && tam > 0){
 
-		printf("============================================================================\n");
-		printf("\t      ***BAJA BICICLETA***\n");
+		printf("===================================================================================================\n");
+		printf("\t                       ***BAJA BICICLETA***\n");
 
 		if(!get_NumEnte(&iD, "Ingrese id de la bicicleta: ", "Id no esta registrado. ", 1, 60000)){
 			printf("Intente de nuevo.\n");
@@ -306,13 +355,13 @@ int bajaBicicleta(eBicicleta lista[], int tam){
 
 		indice = buscarBicicleta(lista, tam, iD);
 
-		if(indice <= 0){
-			printf("----------------------------------------------------------------------------\n");
-			printf(" ID       MARCA         TIPO         RODADO        COLOR          MATERIAL \n");
-			printf("----------------------------------------------------------------------------\n");
-			moatrarBicicleta(lista[indice]);
-			printf("----------------------------------------------------------------------------\n");
-			while(!get_Caracter(&baja, "¿Esta seguro de dar de baja a esta bicicleta? ", "Error. Haga una eleccion entre 's' o 'n' ", 'n', 's')){
+		if(indice >= 0){
+			printf("---------------------------------------------------------------------------------------------------\n");
+			printf(" ID         MARCA             TIPO                RODADO               COLOR          MATERIAL \n");
+			printf("---------------------------------------------------------------------------------------------------\n");
+			moatrarBicicleta(lista[indice], tipos, tamTip, colores, tamCol);
+			printf("---------------------------------------------------------------------------------------------------\n");
+			while(!get_Caracter(&baja, "¿Esta seguro de dar de baja a esta bicicleta?: ", "Error. Haga una eleccion entre 's' o 'n'\n", 'n', 's')){
 				printf("Vuelva a ingresar dato.\n");
 
 			}
