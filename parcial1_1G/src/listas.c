@@ -1,64 +1,82 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "utn.h"
 #include "bicicleta.h"
+#include "trabajo.h"
 
 
-void listarTipos(){
+
+void listarTipo(eTipo tipo){
+
+	printf("%2d          %-10s\n", tipo.iD,
+			                       tipo.descripcion);
+
+}
+
+
+
+void listarTipos(eTipo tipos[], int tam){
 
 	printf("============================\n");
 	printf("     ***LISTA TIPOS***\n");
 	printf("============================\n");
 	printf("ID            TIPO\n");
 	printf("-----------------------------\n");
-	printf("1000          RUTERA\n");
-	printf("1001          CARRERA\n");
-	printf("1002          MOUNTAIN\n");
-	printf("1003          BMX\n");
+	for(int i = 0; i < tam; i ++){
+		listarTipo(tipos[i]);
+	}
 	printf("============================\n");
 
 }
 
 
 
-void listarColores(){
+void listarColor(eColor color){
+
+	printf("%2d          %-10s\n", color.id,
+				                   color.nombreColor);
+
+}
+
+
+
+void listarColores(eColor colores[], int tam){
 
 	printf("============================\n");
 	printf("   ***LISTA COLORES***\n");
 	printf("============================\n");
 	printf("ID            TIPO\n");
 	printf("-----------------------------\n");
-	printf("5000          GRIS\n");
-	printf("5001          BLANCO\n");
-	printf("5002          AZUL\n");
-	printf("5003          NEGOR\n");
-	printf("5004          ROJO\n");
+	for(int i = 0; i < tam; i ++){
+		listarColor(colores[i]);
+	}
 	printf("============================\n");
 
 }
 
 
 
-void listarServicios(){
+void listarServicio(eServicio servicio){
+
+	printf("%2d          %-10s            %2.f ARS\n", servicio.iD,
+							                           servicio.descripcion,
+											           servicio.precio);
+
+}
+
+
+
+void listarServicios(eServicio servicios[], int tam){
 
 	printf("================================================\n");
 	printf("\t   ***LISTA SERVICIOS***\n");
 	printf("================================================\n");
 	printf("ID             SERVICIO             PRECIO\n");
 	printf("------------------------------------------------\n");
-	printf("20000          LIMPIEZA             30  ARS\n");
-	printf("20001          PARCHE               400 ARS\n");
-	printf("20002          CENTRADO             500 ARS\n");
-	printf("20003          CADENA               450 ARS\n");
+	for(int i = 0; i < tam; i ++){
+		listarServicio(servicios[i]);
+	}
 	printf("================================================\n");
 
 }
-
-
-
-
-
-
-
 
 

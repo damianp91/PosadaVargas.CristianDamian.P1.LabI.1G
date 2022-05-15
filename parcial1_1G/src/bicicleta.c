@@ -5,6 +5,7 @@
 #include "bicicleta.h"
 
 
+
 int menu(){
 	int opcion;
 
@@ -36,9 +37,7 @@ int initBicicleta(eBicicleta lista[], int tam){
 	if(lista != NULL && tam > 0){
 
 		for(int i = 0; i < tam; i ++){
-
 			lista[i].isEmpty = 1;
-
 		}
 
 		retorno = 1;
@@ -46,6 +45,7 @@ int initBicicleta(eBicicleta lista[], int tam){
 	}
 
 	return retorno;
+
 }
 
 
@@ -87,6 +87,8 @@ int altaBicicleta(eBicicleta lista[], int tam, int* pId){
 
 			}else{
 
+				printf("===================================================================================================\n");
+				printf("\t                           ***ALTA BICICLETA***\n");
 				auxBicicleta.iD = *pId;
 				(*pId)++;
 
@@ -116,6 +118,8 @@ int altaBicicleta(eBicicleta lista[], int tam, int* pId){
 
 				lista[indice] = auxBicicleta;
 
+				printf("===================================================================================================\n");
+
 				retorno = 1;
 
 			}
@@ -127,6 +131,7 @@ int altaBicicleta(eBicicleta lista[], int tam, int* pId){
 }
 
 
+
 int cargaDescripTipo(eTipo tipos[], int tamTip, int idTipo, char descripTipo[]){
 	int retorno = 0;
 
@@ -135,10 +140,8 @@ int cargaDescripTipo(eTipo tipos[], int tamTip, int idTipo, char descripTipo[]){
 		for(int i = 0; i < tamTip; i ++){
 
 			if(tipos[i].iD == idTipo){
-
 				strcpy(descripTipo, tipos[i].descripcion);
 				break;
-
 			}
 
 		}
@@ -151,8 +154,9 @@ int cargaDescripTipo(eTipo tipos[], int tamTip, int idTipo, char descripTipo[]){
 }
 
 
+
 int cargaDescripColor(eColor colores[], int tamCol, int idCol, char descripColor[]){
-int retorno = 0;
+    int retorno = 0;
 
 	if(colores != NULL && descripColor != NULL && tamCol > 0){
 
@@ -173,6 +177,38 @@ int retorno = 0;
 
 	return retorno;
 }
+
+
+
+int ordenarListadoBicis(eBicicleta bicicletas[], int tam, int criterio){
+	int retorno = 0;
+	eBicicleta auxBicicleta;
+
+	if(bicicletas != NULL && tam > 0){
+
+		for(int i = 0; i < tam - 1; i ++){
+			for(int j = i + 1; j < tam; j ++){
+
+				if((bicicletas[i].idTipo.iD == bicicletas[j].idTipo.iD && bicicletas[i].rodado > bicicletas[j].rodado && criterio) || (bicicletas[i].idTipo.iD > bicicletas[j].idTipo.iD && criterio) ||
+				   (bicicletas[i].idTipo.iD == bicicletas[j].idTipo.iD && bicicletas[i].rodado < bicicletas[j].rodado && !criterio) || (bicicletas[i].idTipo.iD < bicicletas[j].idTipo.iD && !criterio)){
+
+					auxBicicleta = bicicletas[i];
+					bicicletas[i] = bicicletas[j];
+					bicicletas[j] = auxBicicleta;
+
+				}
+
+			}
+
+		}
+
+		retorno = 1;
+
+	}
+
+	return retorno;
+}
+
 
 
 void moatrarBicicleta(eBicicleta bicicleta, eTipo tipos[], int tamTip, eColor colores[], int tamCol){
@@ -200,7 +236,7 @@ int mostrarBicicletas(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eC
 	int retorno = 0;
 	int flag = 1;
 
-	if(lista != NULL && tam > 0){
+	if(lista != NULL && tipos != NULL && colores != NULL && tam > 0 && tamTip > 0 && tamCol > 0){
 
 		printf("===================================================================================================\n");
 		printf("\t                        ***LISTA BICICLETAS***\n");
@@ -218,6 +254,7 @@ int mostrarBicicletas(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eC
 		printf("===================================================================================================\n");
 
 		if(flag){
+
 			printf("No hay bicicletas para mostrar\n");
 
 		}
@@ -251,6 +288,7 @@ int buscarBicicleta(eBicicleta lista[], int tam, int iD){
 	}
 
 	return retorno;
+
 }
 
 
@@ -279,11 +317,11 @@ int modificarBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, e
 	int auxRodado;
 
 
-	if(lista != NULL && tam > 0){
+	if(lista != NULL && tipos != NULL && colores != NULL && tam > 0 && tamTip > 0 && tamCol > 0){
 
 		printf("===================================================================================================\n");
 		printf("\t                ***MODIFICAR BICICLETA***\n");
-		if(!get_NumEnte(&iD, "Ingrese id de la bicicleta: ", "Id no esta registrado. ", 1, 60000)){
+		if(!get_NumEnte(&iD, "Ingrese id de la bicicleta: ", "Id no esta registrado. ", 1, 20000)){
 			printf("Intente de nuevo.\n");
 		}
 
@@ -344,7 +382,7 @@ int bajaBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor
 	int  indice;
 	char baja;
 
-	if(lista != NULL && tam > 0){
+	if(lista != NULL && tipos != NULL && colores != NULL && tam > 0 && tamTip > 0 && tamCol > 0){
 
 		printf("===================================================================================================\n");
 		printf("\t                       ***BAJA BICICLETA***\n");
@@ -389,3 +427,5 @@ int bajaBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor
 
 	return retorno;
 }
+
+

@@ -43,4 +43,4 @@ void moatrarBicicleta(eBicicleta bicicleta, eTipo tipos[], int tamTip, eColor co
 int mostrarBicicletas(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
 int menuModificar();
 int bajaBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
-
+int ordenarListadoBicis(eBicicleta bicicletas[], int tam, int criterio);

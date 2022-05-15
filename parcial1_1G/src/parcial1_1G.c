@@ -1,10 +1,10 @@
 /*
  ============================================================================
  Name        : parcial1_1G.c
- Author      : 
- Version     :
+ Author      : Cristian Damian Posada Vargas
+ Version     : 1
  Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
+ Description : ABM de bicicletas.
  ============================================================================
  */
 
@@ -12,43 +12,25 @@
 #include <stdlib.h>
 #include "utn.h"
 #include "bicicleta.h"
+#include "trabajo.h"
 #include "listas.h"
 
 
-typedef struct{
-	int dia;
-	int mes;
-	int anio;
-
-}eFecha;
-
-
-typedef struct{
-	int iD;
-	char descripcion[25];
-	float precio;
-
-}eServicio;
-
-
-
-typedef struct{
-	int id;
-	eBicicleta idBici;
-	eServicio idServicio;
-	eFecha fecharServicio;
-
-}eTrabajo;
-
-
-
-#define TAM 3
+#define TAM 5
 #define TAM_TIP 4
 #define TAM_COL 5
+#define TAM_SERV 4
+#define ASC 1
+#define DESC 0
+
 
 int main(void) {
 	setbuf(stdout, NULL);
+	int iDbici = 1;
+	int iDTrabajo = 1;
+	char seguir = 's';
 	eBicicleta bicicletas[TAM];
+	eTrabajo trabajos[TAM];
 	eTipo tipos[TAM_TIP] = {
 
 		{1000, "RUTERA"},
@@ -66,11 +48,17 @@ int main(void) {
 		{5004, "ROJO"}
 
 	};
+	eServicio servicios[TAM_SERV] = {
 
-	int iDbici = 1;
-	char seguir = 's';
+		{20000, "LIMPIEZA", 30},
+		{20001, "PARCHE", 400},
+		{20002, "CENTRADO", 500},
+		{20003, "CADENA", 450},
+
+	};
 
 	initBicicleta(bicicletas, TAM);
+	initTrabajo(trabajos, TAM);
 
 	do{
 		switch(menu()){
@@ -101,37 +89,46 @@ int main(void) {
 
 		case 4:
 
-			mostrarBicicletas(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL);
+			if(!ordenarListadoBicis(bicicletas, TAM, ASC)){
+				printf("No se pudo hacer el ordenamiento de la lista.\n");
+			}
+			if(mostrarBicicletas(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL)){
+				printf("Listado de bicicletas final.\n");
+			}
 
 			break;
 
 		case 5:
 
-			listarTipos();
+			listarTipos(tipos, TAM_TIP);
 
 			break;
 
 		case 6:
 
-			listarColores();
+			listarColores(colores, TAM_COL);
 
 			break;
 
 		case 7:
 
-			listarServicios();
+			listarServicios(servicios, TAM_SERV);
 
 			break;
 
 		case 8:
 
-			printf("Alta trabajo.\n");
+			if(altaTrabajo(trabajos, TAM, bicicletas, TAM, servicios, TAM_SERV, tipos, TAM_TIP, colores, TAM_COL, &iDTrabajo)){
+				printf("Alta de trabajo dada con exito.\n");
+
+			}
 
 			break;
 
 		case 9:
 
-			printf("Listar trabajo.\n");
+			ordenarListTrabajo(trabajos, TAM);
+			listarTrabajos(trabajos, TAM, servicios, TAM_SERV);
 
 			break;
 
@@ -152,53 +149,4 @@ int main(void) {
 	return EXIT_SUCCESS;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
