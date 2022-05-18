@@ -221,7 +221,7 @@ void moatrarBicicleta(eBicicleta bicicleta, eTipo tipos[], int tamTip, eColor co
 	cargaDescripColor(colores, tamCol, bicicleta.idColor.id, descripColor);
 
 
-	printf(" %2d   %10s      %10s                   %2d              %10s             %c\n", bicicleta.iD,
+	printf(" %2d   %10s          %10s               %2d            %10s               %c\n", bicicleta.iD,
 			                                                                                 bicicleta.marca,
 																				             descripTipo,
 															                                 bicicleta.rodado,
@@ -321,7 +321,7 @@ int modificarBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, e
 
 		printf("===================================================================================================\n");
 		printf("\t                ***MODIFICAR BICICLETA***\n");
-		if(!get_NumEnte(&iD, "Ingrese id de la bicicleta: ", "Id no esta registrado. ", 1, 20000)){
+		if(!get_NumEnte(&iD, "Ingrese id de la bicicleta: ", "Id no esta registrado. ", 1, 500)){
 			printf("Intente de nuevo.\n");
 		}
 
@@ -362,9 +362,12 @@ int modificarBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, e
 
 			}
 
+			printf("Modificacion de bicicleta exitosa.\n");
+
 		}
 
 		else{
+
 			printf("El id ingresado no esta registrado en sistema.\n");
 
 		}
@@ -387,7 +390,7 @@ int bajaBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor
 		printf("===================================================================================================\n");
 		printf("\t                       ***BAJA BICICLETA***\n");
 
-		if(!get_NumEnte(&iD, "Ingrese id de la bicicleta: ", "Id no esta registrado. ", 1, 60000)){
+		if(!get_NumEnte(&iD, "Ingrese id de la bicicleta: ", "Id no esta registrado. ", 1, 500)){
 			printf("Intente de nuevo.\n");
 		}
 
@@ -405,12 +408,15 @@ int bajaBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor
 			}
 
 			if(baja == 's'){
+
 				lista[indice].isEmpty = 1;
 				retorno = 1;
+				printf("Baja de bicicleta exitosa.\n");
 
 			}
 
 			else{
+
 				printf("Se ha cancelado baja por usuario.\n");
 
 			}

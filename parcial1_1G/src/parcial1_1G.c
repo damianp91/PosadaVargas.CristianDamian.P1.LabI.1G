@@ -16,7 +16,7 @@
 #include "listas.h"
 
 
-#define TAM 5
+#define TAM 500
 #define TAM_TIP 4
 #define TAM_COL 5
 #define TAM_SERV 4
@@ -29,6 +29,8 @@ int main(void) {
 	int iDbici = 1;
 	int iDTrabajo = 1;
 	char seguir = 's';
+	int contVal = 0;
+	int contTra = 0;
 	eBicicleta bicicletas[TAM];
 	eTrabajo trabajos[TAM];
 	eTipo tipos[TAM_TIP] = {
@@ -67,33 +69,60 @@ int main(void) {
 
 			if(altaBicicleta(bicicletas, TAM, &iDbici)){
 				printf("Alta de bicicleta exitosa.\n");
+				contVal ++;
 			}
 
 			break;
 
 		case 2:
 
-			if(modificarBicicleta(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL)){
-				printf("Modificacion de bicicleta exitosa.\n");
+			if(contVal){
+				modificarBicicleta(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL);
+
+			}
+
+			else{
+
+				printf("Primero debe ingresar por lo menos una bicicleta para poder hacer esta accion.\n");
+
 			}
 
 			break;
 
 		case 3:
 
-			if(bajaBicicleta(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL)){
-				printf("Baja de bicicleta exitosa.\n");
+			if(contVal){
+				bajaBicicleta(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL);
+				contVal --;
+
+			}
+
+			else{
+
+				printf("Primero debe ingresar por lo menos una bicicleta para poder hacer esta accion.\n");
+
 			}
 
 			break;
 
 		case 4:
 
-			if(!ordenarListadoBicis(bicicletas, TAM, ASC)){
-				printf("No se pudo hacer el ordenamiento de la lista.\n");
+			if(contVal){
+
+				if(!ordenarListadoBicis(bicicletas, TAM, ASC)){
+					printf("No se pudo hacer el ordenamiento de la lista.\n");
+				}
+
+				if(mostrarBicicletas(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL)){
+					printf("Listado de bicicletas final.\n");
+				}
+
 			}
-			if(mostrarBicicletas(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL)){
-				printf("Listado de bicicletas final.\n");
+
+			else{
+
+				printf("Primero debe ingresar por lo menos una bicicleta para poder hacer esta accion.\n");
+
 			}
 
 			break;
@@ -120,6 +149,7 @@ int main(void) {
 
 			if(altaTrabajo(trabajos, TAM, bicicletas, TAM, servicios, TAM_SERV, tipos, TAM_TIP, colores, TAM_COL, &iDTrabajo)){
 				printf("Alta de trabajo dada con exito.\n");
+				contTra ++;
 
 			}
 
@@ -127,8 +157,18 @@ int main(void) {
 
 		case 9:
 
-			ordenarListTrabajo(trabajos, TAM);
-			listarTrabajos(trabajos, TAM, servicios, TAM_SERV);
+			if(contTra){
+
+				ordenarListTrabajo(trabajos, TAM);
+				listarTrabajos(trabajos, TAM, servicios, TAM_SERV);
+
+			}
+
+			else{
+
+				printf("Primero debe ingresar por lo menos un trabajo para poder hacer esta accion.\n");
+
+			}
 
 			break;
 

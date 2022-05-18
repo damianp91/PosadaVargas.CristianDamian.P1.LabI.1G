@@ -68,7 +68,7 @@ int altaTrabajo(eTrabajo trabajo[], int tam, eBicicleta bicicletas[], int tamBic
 
 			mostrarBicicletas(bicicletas, tamBici, tipos, tamTip, colores, tamCol);
 
-			while(!get_NumEnte(&auxTrabajo.idBici.iD, "Elija ID de bicicleta a realizar trabajo: ", "Error. opcion debe ser entre el listado de ids desplegados en pantalla\n", 1, 20000)){
+			while(!get_NumEnte(&auxTrabajo.idBici.iD, "Elija ID de bicicleta a realizar trabajo: ", "Error. opcion debe ser entre el listado de ids desplegados en pantalla\n", 1, 500)){
 				printf("Vuelva a ingresar dato.\n");
 			}
 
@@ -138,10 +138,10 @@ void listarTrabajo(eTrabajo trabajo, eServicio servicios[], int tamServ){
 
 	cargaDescripServ(servicios, tamServ, trabajo.idServicio.iD, descripServicio);
 
-	printf("%2d             %2d                  %10s           %02d/%02d/%d\n", trabajo.id,
-			                                                                     trabajo.idBici.iD,
-								                                                 descripServicio,
-												                                 trabajo.fecharServicio.dia, trabajo.fecharServicio.mes, trabajo.fecharServicio.anio);
+	printf("%2d             %2d              %10s              %02d/%02d/%d\n", trabajo.id,
+			                                                                    trabajo.idBici.iD,
+								                                                descripServicio,
+												                                trabajo.fecharServicio.dia, trabajo.fecharServicio.mes, trabajo.fecharServicio.anio);
 
 }
 

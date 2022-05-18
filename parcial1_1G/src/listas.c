@@ -57,9 +57,9 @@ void listarColores(eColor colores[], int tam){
 
 void listarServicio(eServicio servicio){
 
-	printf("%2d          %-10s            %2.f ARS\n", servicio.iD,
-							                           servicio.descripcion,
-											           servicio.precio);
+	printf("%2d          %-10s           %2.f ARS\n", servicio.iD,
+							                          servicio.descripcion,
+											          servicio.precio);
 
 }
 
