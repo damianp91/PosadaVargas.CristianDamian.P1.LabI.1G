@@ -156,7 +156,7 @@ int ordenarListTrabajo(eTrabajo trabajos[], int tam){
 		for(int i = 0; i < tam - 1; i ++){
 			for(int j = i + 1; j < tam; j ++){
 
-				if(trabajos[i].idServicio.iD > trabajos[j].idServicio.iD){
+				if(strcmp(trabajos[i].idServicio.descripcion, trabajos[j].idServicio.descripcion)){
 
 					auxTrabajos = trabajos[i];
 					trabajos[i] = trabajos[j];

@@ -9,7 +9,7 @@
 int menu(){
 	int opcion;
 
-	printf("===================================\n");
+	printf("==========================================================================\n");
 	printf("\t   ***TALLER DE BICIS***\n");
 	printf("\t1) Alta bicicleta.\n");
 	printf("\t2) Modificar bicicleta.\n");
@@ -27,7 +27,7 @@ int menu(){
 	printf("\t14) Alta trabajo.\n");
 	printf("\t15) Listar trabajo.\n");
 	printf("\t16) Salir.\n");
-	printf("===================================\n");
+	printf("==========================================================================\n");
 	while(!get_NumEnte(&opcion, "Ingrese opcion: ", "Error. Ingrese opcion(1 al 10)\n", 1, 16)){
 		printf("Intente de nuevo.\n");
 	}
@@ -207,8 +207,10 @@ int ordenarListadoBicis(eBicicleta bicicletas[], int tam, int criterio){
 		for(int i = 0; i < tam - 1; i ++){
 			for(int j = i + 1; j < tam; j ++){
 
-				if((bicicletas[i].idTipo.iD == bicicletas[j].idTipo.iD && bicicletas[i].rodado > bicicletas[j].rodado && criterio) || (bicicletas[i].idTipo.iD > bicicletas[j].idTipo.iD && criterio) ||
-				   (bicicletas[i].idTipo.iD == bicicletas[j].idTipo.iD && bicicletas[i].rodado < bicicletas[j].rodado && !criterio) || (bicicletas[i].idTipo.iD < bicicletas[j].idTipo.iD && !criterio)){
+				if((strcmp(bicicletas[i].idTipo.descripcion, bicicletas[j].idTipo.descripcion) == 0 && (bicicletas[i].rodado > bicicletas[j].rodado && criterio)) ||
+				   (strcmp(bicicletas[i].idTipo.descripcion, bicicletas[j].idTipo.descripcion) != 0 && strcmp(bicicletas[i].idTipo.descripcion, bicicletas[j].idTipo.descripcion) > 0 && criterio) ||
+				   (strcmp(bicicletas[i].idTipo.descripcion, bicicletas[j].idTipo.descripcion) == 0 && (bicicletas[i].rodado < bicicletas[j].rodado && !criterio)) ||
+				   (strcmp(bicicletas[i].idTipo.descripcion, bicicletas[j].idTipo.descripcion) != 0 && strcmp(bicicletas[i].idTipo.descripcion, bicicletas[j].idTipo.descripcion) < 0 && !criterio)){
 
 					auxBicicleta = bicicletas[i];
 					bicicletas[i] = bicicletas[j];
@@ -239,13 +241,13 @@ void moatrarBicicleta(eBicicleta bicicleta, eTipo tipos[], int tamTip, eColor co
 	cargaDescripColor(colores, tamCol, bicicleta.idColor.id, descripColor);
 
 
-	printf(" %2d   %10s          %10s               %2d            %10s               %c       %10s\n", bicicleta.iD,
-			                                                                                            bicicleta.marca,
-																									   descripTipo,
-																									   bicicleta.rodado,
-																									   descripColor,
-																									   bicicleta.material,
-																									   bicicleta.idCliente.nombre);
+	printf(" %2d   %10s          %10s               %2d            %10s               %c          %-10s\n", bicicleta.iD,
+			                                                                                                bicicleta.marca,
+																									        descripTipo,
+																									        bicicleta.rodado,
+																									        descripColor,
+																									        bicicleta.material,
+																									        bicicleta.idCliente.nombre);
 
 }
 

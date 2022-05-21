@@ -16,7 +16,7 @@
 #include "listas.h"
 
 
-#define TAM 500
+#define TAM 10
 #define TAM_TIP 4
 #define TAM_COL 5
 #define TAM_SERV 4
@@ -29,9 +29,20 @@ int main(void) {
 	int iDbici = 1;
 	int iDTrabajo = 1;
 	char seguir = 's';
-	int contVal = 0;
+	int contVal = 1;
 	int contTra = 0;
-	eBicicleta bicicletas[TAM];
+	eBicicleta bicicletas[TAM] = {
+			{1, "TREK", {1000, "RUTERA"}, 27, {5003, "NEGRO"}, 'c', {100, "DAMIAN", 'm'}},
+		    {2, "BMC", {1003, "BMX"}, 29, {5002, "AZUL"}, 'a', {101, "KAREN", 'f'}},
+		    {3, "TREK", {1002, "MONTAIN"}, 29, {5004, "ROJO"}, 'a', {102, "SERGIO", 'm'}},
+		    {4, "GW", {1003, "BMX"}, 16, {5002, "AZUL"}, 'a', {103, "SARA", 'f'}},
+		    {5, "SPECIALIZED", {1001, "CARRERA"}, 26, {5003, "NEGRO"}, 'c', {104, "JONH", 'm'}},
+		    {6, "CANYON", {1001, "CARRERA"}, 29, {5004, "ROJO"}, 'c', {105, "DAMIAN", 'm'}},
+		    {7, "TOP MEGA", {1002, "MONTAIN"}, 27, {5001, "BLANCO"}, 'a', {106, "TOMAS", 'm'}},
+		    {8, "TREK", {1001, "CARRERA"}, 26, {5003, "NEGRO"}, 'a', {107, "CLAUDIA", 'f'}},
+		    {9, "SPECIALIZED", {1000, "RUTERA"}, 29, {5003, "NEGRO"}, 'c', {108, "ERIKA", 'f'}},
+		    {10, "GW", {1003, "BMX"}, 27, {5002, "AZUL"}, 'a', {109, "SERGIO", 'm'}}};
+
 	eTrabajo trabajos[TAM];
 	eTipo tipos[TAM_TIP] = {
 
@@ -59,7 +70,7 @@ int main(void) {
 
 	};
 
-	initBicicleta(bicicletas, TAM);
+	//initBicicleta(bicicletas, TAM);
 	initTrabajo(trabajos, TAM);
 
 	do{
@@ -178,7 +189,7 @@ int main(void) {
 
 		case 13:
 
-			printf("ordenar\n");
+			contColSelec(bicicletas, TAM);
 
 			break;
 
