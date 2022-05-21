@@ -147,6 +147,43 @@ int main(void) {
 
 		case 8:
 
+			listaColorSelec(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL);
+
+			break;
+
+		case 9:
+
+			listaTipoSelec(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL);
+
+			break;
+
+		case 10:
+
+			listaBiciMaterial(bicicletas, TAM);
+
+			break;
+
+		case 11:
+
+			listaTiposBici(bicicletas, TAM, ASC);
+			mostrarBicicletas(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL);
+
+			break;
+
+		case 12:
+
+			litaConteoTipoColor(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL);
+
+			break;
+
+		case 13:
+
+			printf("ordenar\n");
+
+			break;
+
+		case 14:
+
 			if(altaTrabajo(trabajos, TAM, bicicletas, TAM, servicios, TAM_SERV, tipos, TAM_TIP, colores, TAM_COL, &iDTrabajo)){
 				printf("Alta de trabajo dada con exito.\n");
 				contTra ++;
@@ -155,7 +192,7 @@ int main(void) {
 
 			break;
 
-		case 9:
+		case 15:
 
 			if(contTra){
 
@@ -172,7 +209,7 @@ int main(void) {
 
 			break;
 
-		case 10:
+		case 16:
 
 			printf("Saliendo...");
 			printf("\n\n");

@@ -66,6 +66,26 @@ void listarServicios(eServicio servicios[], int tam);
 
 
 
+
+int listaColorSelec(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
+
+
+
+int listaTipoSelec(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
+
+
+
+int listaTiposBici(eBicicleta bicicletas[], int tam, int criterio);
+
+
+
+int listaBiciMaterial(eBicicleta bicicletas[], int tam);
+
+
+
+int litaConteoTipoColor(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
+
+
 #endif /* LISTAS_H_ */
 
 

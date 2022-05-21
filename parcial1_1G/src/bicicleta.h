@@ -17,12 +17,21 @@ typedef struct{
 
 
 typedef struct{
+	int id;
+	char nombre[20];
+	char sexo;
+
+}eCliente;
+
+
+typedef struct{
 	int iD;
 	char marca[20];
 	eTipo idTipo;
 	int rodado;
 	eColor idColor;
 	char material;
+	eCliente idCliente;
 	int isEmpty;
 
 }eBicicleta;
