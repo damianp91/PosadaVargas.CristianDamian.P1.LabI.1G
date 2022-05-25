@@ -74,7 +74,7 @@ int main(void) {
 
 	};
 
-	//initBicicleta(bicicletas, TAM);
+	initBicicleta(bicicletas, TAM);
 	initTrabajo(trabajos, TAM);
 
 	do{
