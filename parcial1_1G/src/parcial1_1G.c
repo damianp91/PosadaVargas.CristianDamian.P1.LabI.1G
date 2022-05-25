@@ -31,9 +31,9 @@ int main(void) {
 	int iDbici = 1;
 	int iDTrabajo = 1;
 	char seguir = 's';
-	int contVal = 1;
+	int contVal = 0;
 	int contTra = 0;
-	eBicicleta bicicletas[TAM] = {
+	eBicicleta bicicletas[TAM]; /**= {
 			{1, "TREK", {1000, "RUTERA"}, 27, {5003, "NEGRO"}, 'c', {100, "DAMIAN", 'm'}},
 		    {2, "BMC", {1003, "BMX"}, 29, {5002, "AZUL"}, 'a', {101, "KAREN", 'f'}},
 		    {3, "TREK", {1002, "MONTAIN"}, 29, {5004, "ROJO"}, 'a', {102, "SERGIO", 'm'}},
@@ -46,7 +46,7 @@ int main(void) {
 		    {10, "GW", {1003, "BMX"}, 27, {5002, "AZUL"}, 'a', {109, "SERGIO", 'm'}},
 			{11, "CANOLADE", {1002, "MOUNTAIN"}, 29, {5001, "BLANCO"}, 'c', {110, "MATIAS", 'm'}},
 			{12, "BMC", {1001, "CARRERA"}, 26, {5002, "AZUL"}, 'a', {111, "SANDRA", 'f'}}};
-
+			*/
 	eTrabajo trabajos[TAM];
 	eTipo tipos[TAM_TIP] = {
 
@@ -123,11 +123,11 @@ int main(void) {
 		case 4:
 
 			if(contVal){
-				/**
+
 				if(!ordenarListadoBicis(bicicletas, TAM, ASC)){
 					printf("No se pudo hacer el ordenamiento de la lista.\n");
 				}
-				*/
+
 				if(mostrarBicicletas(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL)){
 					printf("Listado de bicicletas final.\n");
 				}
@@ -180,7 +180,7 @@ int main(void) {
 
 		case 11:
 
-			//ordenarListaTiposBici(bicicletas, TAM, ASC);
+			ordenarListaTiposBici(bicicletas, TAM, ASC);
 			listaXtiposBicis(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL);
 
 			break;
