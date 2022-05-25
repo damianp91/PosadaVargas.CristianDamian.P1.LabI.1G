@@ -1,20 +1,10 @@
+#include "bicicleta.h"
+#include "servicio.h"
+#include "fecha.h"
+
+
 #ifndef TRABAJO_H_
 #define TRABAJO_H_
-
-typedef struct{
-	int dia;
-	int mes;
-	int anio;
-
-}eFecha;
-
-
-typedef struct{
-	int iD;
-	char descripcion[25];
-	float precio;
-
-}eServicio;
 
 
 typedef struct{
@@ -26,7 +16,9 @@ typedef struct{
 
 }eTrabajo;
 
+
 #endif /* TRABAJO_H_ */
+
 
 
 /**
@@ -40,6 +32,7 @@ typedef struct{
 int initTrabajo(eTrabajo lista[], int tam);
 
 
+
 /**
  * \Brief recibe 2 parametros con los cuales busca en array struct en la primera interacion el campo libre
  * \param lista struc eTrabajo
@@ -49,6 +42,7 @@ int initTrabajo(eTrabajo lista[], int tam);
  *
  */
 int buscarLibreTrabajo(eTrabajo lista[], int tam);
+
 
 
 /**
@@ -71,6 +65,7 @@ int buscarLibreTrabajo(eTrabajo lista[], int tam);
 int altaTrabajo(eTrabajo trabajo[], int tam, eBicicleta bicicletas[], int tamBici, eServicio servicios[], int tamServ, eTipo tipos[], int tamTip, eColor colores[], int tamCol, int* pId);
 
 
+
 /**
  * \Brief recibe 3 parametros con los cuales imprime la informacion del valor trabajo
  * \param trabajo de tipo struct eTrabajo
@@ -81,6 +76,7 @@ int altaTrabajo(eTrabajo trabajo[], int tam, eBicicleta bicicletas[], int tamBic
  *
  */
 void listarTrabajo(eTrabajo trabajo, eServicio servicios[], int tamServ);
+
 
 
 /**
@@ -96,18 +92,6 @@ void listarTrabajo(eTrabajo trabajo, eServicio servicios[], int tamServ);
 int listarTrabajos(eTrabajo trabajos[], int tam, eServicio servicios[], int tamServ);
 
 
-/**
- * \Brief recibe 4 parametrso con los cuales en una ocurrencia busca el codigo requerido para hacer una copia de la descripcion del id
- * \param servicios de tipo struct eServicio array
- * \param tamServ de tipo int indica el tamaño del array
- * \param iDserv de tipo int es el criterio de busqueda
- * \param descripServicio de tipo char cadena de caracter
- *
- * return retorna un 0 si no se logra efectuar la funcion y 1 si se puede efectuar la funcion
- *
- */
-int cargaDescripServ(eServicio servicios[], int tamServ, int iDserv, char descripServicio[]);
-
 
 /**
  * \Brief recibe 2 parametros con los cuales ordena una lista segun criterio 1 ascendente 0 descendente
@@ -118,3 +102,5 @@ int cargaDescripServ(eServicio servicios[], int tamServ, int iDserv, char descri
  *
  */
 int ordenarListTrabajo(eTrabajo trabajos[], int tam);
+
+

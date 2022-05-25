@@ -1,27 +1,10 @@
+#include "tipo.h"
+#include "color.h"
+#include "cliente.h"
+
+
 #ifndef BICICLETA_H_
 #define BICICLETA_H_
-
-
-typedef struct{
-	int iD;
-	char descripcion[20];
-
-}eTipo;
-
-
-typedef struct{
-	int id;
-	char nombreColor[20];
-
-}eColor;
-
-
-typedef struct{
-	int id;
-	char nombre[20];
-	char sexo;
-
-}eCliente;
 
 
 typedef struct{
@@ -40,6 +23,7 @@ typedef struct{
 #endif /* BICICLETA_H_ */
 
 
+
 /**
  * \Brief funcion sin parametros de ingreso que retorna un numero entero y muestra un menu de opciones
  *
@@ -47,6 +31,7 @@ typedef struct{
  *
  */
 int menu();
+
 
 
 /**
@@ -62,6 +47,7 @@ int menu();
 int altaBicicleta(eBicicleta lista[], int tam, int* pId);
 
 
+
 /**
  * \Brief recibe dos parametros y en lista inicializa los campos isEmpty con 1
  * \param lista de tipo struct eBicicleta
@@ -73,6 +59,7 @@ int altaBicicleta(eBicicleta lista[], int tam, int* pId);
 int initBicicleta(eBicicleta lista[], int tam);
 
 
+
 /**
  * \Brief recube dos parametros con los cuales busca en la primera ocurrencia el campo isEmpty vacio
  * \param lista de tipo struct eBicicleta
@@ -82,6 +69,7 @@ int initBicicleta(eBicicleta lista[], int tam);
  *
  */
 int buscarLibre(eBicicleta lista[], int tam);
+
 
 
 /**
@@ -99,6 +87,7 @@ int buscarLibre(eBicicleta lista[], int tam);
 int modificarBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
 
 
+
 /**
  * \Brief recibe tres parametros para buscar en la lista en el campo id coicida con el id ingresado
  * \param lista de tipo struct eBicicleta
@@ -110,31 +99,6 @@ int modificarBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, e
  */
 int buscarBicicleta(eBicicleta lista[], int tam, int iD);
 
-
-/**
- * \Brief recibe 4 parametrso con los cuales en una ocurrencia busca el codigo requerido para hacer una copia de la descripcion del id
- * \param tipos de tipo struct eTipo array
- * \param tamTip de tipo int indica el tamaño del array
- * \param idTipo de tipo int es el criterio de busqueda
- * \param descripTipo de tipo char cadena de caracter
- *
- * return retorna un 0 si no se logra efectuar la funcion y 1 si se puede efectuar la funcion
- *
- */
-int cargaDescripTipo(eTipo tipos[], int tamTip, int idTipo, char descripTipo[]);
-
-
-/**
- * \Brief recibe 4 parametrso con los cuales en una ocurrencia busca el codigo requerido para hacer una copia de la descripcion del id
- * \param tipos de tipo struct eTipo array
- * \param tamTip de tipo int indica el tamaño del array
- * \param idTipo de tipo int es el criterio de busqueda
- * \param descripTipo de tipo char cadena de caracter
- *
- * return retorna un 0 si no se logra efectuar la funcion y 1 si se puede efectuar la funcion
- *
- */
-int cargaDescripColor(eColor colores[], int tamCol, int idCol, char descripColor[]);
 
 
 /**
@@ -149,6 +113,7 @@ int cargaDescripColor(eColor colores[], int tamCol, int idCol, char descripColor
  *
  */
 void moatrarBicicleta(eBicicleta bicicleta, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
+
 
 
 /**
@@ -166,6 +131,7 @@ void moatrarBicicleta(eBicicleta bicicleta, eTipo tipos[], int tamTip, eColor co
 int mostrarBicicletas(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
 
 
+
 /**
  * \Brief funcion sin parametros de ingreso que retorna un numero entero y muestra un menu de opciones
  *
@@ -173,6 +139,7 @@ int mostrarBicicletas(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eC
  *
  */
 int menuModificar();
+
 
 
 /**
@@ -190,6 +157,7 @@ int menuModificar();
 int bajaBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
 
 
+
 /**
  * \Brief recibe tres parametros con los cuales ordena una lista segun criterio 1 ascendente 0 descendente
  * \param bicicletas de lista struct eBicicleta
@@ -202,3 +170,73 @@ int bajaBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor
  */
 int ordenarListadoBicis(eBicicleta bicicletas[], int tam, int criterio);
 
+
+
+/**
+ *
+ */
+int listaColorSelec(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
+
+
+
+/**
+ *
+ */
+int listaTipoSelec(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
+
+
+
+/**
+ *
+ */
+int ordenarListaTiposBici(eBicicleta bicicletas[], int tam, int criterio);
+
+
+
+/**
+ *
+ */
+int listaBiciMaterial(eBicicleta bicicletas[], int tam);
+
+
+
+/**
+ *
+ */
+int listaConteoTipoColor(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
+
+
+
+/**
+ *
+ */
+int contColSelec(eBicicleta bicicletas[], int tam, eColor colores[], int tamCol);
+
+
+
+/**
+ *
+ */
+int listaXtiposBicis(eBicicleta bicicletas[], int tamBici, eTipo tipos[], int tamTip, eColor colores[], int tamCol);
+
+
+
+/**
+ *
+ */
+int totalColorId(eBicicleta bicicletas[], int tamBici, eColor colores[], int tamCol, int idCol, int* total);
+
+
+
+/**
+ *
+ *
+ */
+int mostrarBicicletaxTipo(eBicicleta bicicletas[], int tamBici, eTipo tipos[], int tamTip, eColor colores[], int tamCol, int idTipo);
+
+
+
+/**
+ *
+ */
+void mostrarBiciFilaTipo(eBicicleta bicicleta, eColor colores[], int tamCol);

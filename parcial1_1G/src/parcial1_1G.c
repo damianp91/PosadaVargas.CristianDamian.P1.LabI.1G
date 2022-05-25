@@ -13,10 +13,12 @@
 #include "utn.h"
 #include "bicicleta.h"
 #include "trabajo.h"
-#include "listas.h"
+#include "tipo.h"
+#include "color.h"
+#include "cliente.h"
 
 
-#define TAM 10
+#define TAM 12
 #define TAM_TIP 4
 #define TAM_COL 5
 #define TAM_SERV 4
@@ -41,7 +43,9 @@ int main(void) {
 		    {7, "TOP MEGA", {1002, "MONTAIN"}, 27, {5001, "BLANCO"}, 'a', {106, "TOMAS", 'm'}},
 		    {8, "TREK", {1001, "CARRERA"}, 26, {5003, "NEGRO"}, 'a', {107, "CLAUDIA", 'f'}},
 		    {9, "SPECIALIZED", {1000, "RUTERA"}, 29, {5003, "NEGRO"}, 'c', {108, "ERIKA", 'f'}},
-		    {10, "GW", {1003, "BMX"}, 27, {5002, "AZUL"}, 'a', {109, "SERGIO", 'm'}}};
+		    {10, "GW", {1003, "BMX"}, 27, {5002, "AZUL"}, 'a', {109, "SERGIO", 'm'}},
+			{11, "CANOLADE", {1002, "MOUNTAIN"}, 29, {5001, "BLANCO"}, 'c', {110, "MATIAS", 'm'}},
+			{12, "BMC", {1001, "CARRERA"}, 26, {5002, "AZUL"}, 'a', {111, "SANDRA", 'f'}}};
 
 	eTrabajo trabajos[TAM];
 	eTipo tipos[TAM_TIP] = {
@@ -119,11 +123,11 @@ int main(void) {
 		case 4:
 
 			if(contVal){
-
+				/**
 				if(!ordenarListadoBicis(bicicletas, TAM, ASC)){
 					printf("No se pudo hacer el ordenamiento de la lista.\n");
 				}
-
+				*/
 				if(mostrarBicicletas(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL)){
 					printf("Listado de bicicletas final.\n");
 				}
@@ -176,20 +180,20 @@ int main(void) {
 
 		case 11:
 
-			listaTiposBici(bicicletas, TAM, ASC);
-			mostrarBicicletas(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL);
+			//ordenarListaTiposBici(bicicletas, TAM, ASC);
+			listaXtiposBicis(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL);
 
 			break;
 
 		case 12:
 
-			litaConteoTipoColor(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL);
+			listaConteoTipoColor(bicicletas, TAM, tipos, TAM_TIP, colores, TAM_COL);
 
 			break;
 
 		case 13:
 
-			contColSelec(bicicletas, TAM);
+			contColSelec(bicicletas, TAM, colores, TAM_COL);
 
 			break;
 

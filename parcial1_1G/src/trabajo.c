@@ -2,9 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "utn.h"
-#include "bicicleta.h"
 #include "trabajo.h"
-#include "listas.h"
 
 
 
@@ -104,31 +102,6 @@ int altaTrabajo(eTrabajo trabajo[], int tam, eBicicleta bicicletas[], int tamBic
 
 	return retorno;
 
-}
-
-
-
-int cargaDescripServ(eServicio servicios[], int tamServ, int iDserv, char descripServicio[]){
-	int retorno = 0;
-
-	if(servicios != NULL && descripServicio != NULL && tamServ > 0){
-
-		for(int i = 0; i < tamServ; i ++){
-
-			if(servicios[i].iD == iDserv){
-
-				strcpy(descripServicio, servicios[i].descripcion);
-				break;
-
-			}
-
-		}
-
-		retorno = 1;
-
-	}
-
-	return retorno;
 }
 
 

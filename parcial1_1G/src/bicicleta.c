@@ -150,54 +150,6 @@ int altaBicicleta(eBicicleta lista[], int tam, int* pId){
 
 
 
-int cargaDescripTipo(eTipo tipos[], int tamTip, int idTipo, char descripTipo[]){
-	int retorno = 0;
-
-	if(tipos != NULL && descripTipo != NULL && tamTip > 0){
-
-		for(int i = 0; i < tamTip; i ++){
-
-			if(tipos[i].iD == idTipo){
-				strcpy(descripTipo, tipos[i].descripcion);
-				break;
-			}
-
-		}
-
-		retorno = 1;
-
-	}
-
-	return retorno;
-}
-
-
-
-int cargaDescripColor(eColor colores[], int tamCol, int idCol, char descripColor[]){
-    int retorno = 0;
-
-	if(colores != NULL && descripColor != NULL && tamCol > 0){
-
-		for(int i = 0; i < tamCol; i ++){
-
-			if(colores[i].id == idCol){
-
-				strcpy(descripColor, colores[i].nombreColor);
-				break;
-
-			}
-
-		}
-
-		retorno = 1;
-
-	}
-
-	return retorno;
-}
-
-
-
 int ordenarListadoBicis(eBicicleta bicicletas[], int tam, int criterio){
 	int retorno = 0;
 	eBicicleta auxBicicleta;
@@ -453,6 +405,411 @@ int bajaBicicleta(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor
 	}
 
 	return retorno;
+}
+
+
+
+int listaColorSelec(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol){
+	int retorno = 0;
+	int eleccion;
+
+	if(lista != NULL && tipos != NULL && colores != NULL && tam > 0 && tamTip > 0 && tamCol > 0){
+
+		listarColores(colores, tamCol);
+
+		while(!get_NumEnte(&eleccion, "Elija opcion: ","Error. opcion debe ser entre 5000 a 5004\n",5000, 5004)){
+			printf("Vuelva a ingresar dato.\n");
+		}
+
+		if(eleccion >= 5000){
+
+			printf("=====================================================================================================================\n");
+			printf("\t                        ***LISTA BICICLETAS***\n");
+			printf("---------------------------------------------------------------------------------------------------------------------\n");
+			printf(" ID         MARCA             TIPO                RODADO               COLOR          MATERIAL            CLIENTE\n");
+			printf("---------------------------------------------------------------------------------------------------------------------\n");
+			for(int i = 0; i < tam; i ++){
+
+				if(lista[i].idColor.id == eleccion){
+					moatrarBicicleta(lista[i], tipos, tamTip, colores, tamCol);
+
+				}
+			}
+			printf("=====================================================================================================================\n");
+
+			retorno = 1;
+
+		}
+
+		else{
+
+			printf("Eleccion incorrecta.\n");
+
+		}
+
+
+
+	}
+
+	return retorno;
+
+}
+
+
+
+int listaTipoSelec(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol){
+	int retorno = 0;
+	int eleccion;
+
+	if(lista != NULL && tipos != NULL && colores != NULL && tam > 0 && tamTip > 0 && tamCol > 0){
+
+		listarTipos(tipos, tamTip);
+
+		while(!get_NumEnte(&eleccion, "Elija opcion: ","Error. opcion debe ser entre 1000 a 1003\n",1000, 1003)){
+			printf("Vuelva a ingresar dato.\n");
+		}
+
+		if(eleccion >= 1000){
+
+			printf("=====================================================================================================================\n");
+			printf("\t                        ***LISTA BICICLETAS***\n");
+			printf("---------------------------------------------------------------------------------------------------------------------\n");
+			printf(" ID         MARCA             TIPO                RODADO               COLOR          MATERIAL            CLIENTE\n");
+			printf("---------------------------------------------------------------------------------------------------------------------\n");
+			for(int i = 0; i < tam; i ++){
+
+				if(lista[i].idTipo.iD == eleccion){
+					moatrarBicicleta(lista[i], tipos, tamTip, colores, tamCol);
+
+				}
+			}
+			printf("=====================================================================================================================\n");
+
+			retorno = 1;
+
+		}
+
+		else{
+
+			printf("Eleccion incorrecta.\n");
+
+		}
+
+
+
+	}
+
+	return retorno;
+
+}
+
+
+
+int listaBiciMaterial(eBicicleta bicicletas[], int tam){
+	int retorno = 0;
+	int contBiciCar = 0;
+	int contBiciAl = 0;
+
+	if(bicicletas != NULL && tam > 0){
+
+		for(int i = 0; i < tam; i ++){
+
+			if(bicicletas[i].material == 'a'){
+
+				contBiciAl ++;
+
+			}
+
+			else if(bicicletas[i].material == 'c'){
+
+				contBiciCar ++;
+
+			}
+
+		}
+
+		printf("===================================================\n");
+		printf("     CONTEO DE BICICLETAS POR MATERIAL\n");
+		printf("===================================================\n");
+		if(contBiciCar > contBiciAl){
+
+			printf("HAY MAS BICICLETAS DE CARBONO\n");
+			printf("TOTAL: %d\n", contBiciCar);
+		}
+
+		else if(contBiciCar < contBiciAl){
+
+			printf("HAY MAS BICICLETAS DE ALUMINIO\n");
+			printf("TOTAL: %d\n", contBiciAl);
+		}
+
+		else{
+
+			printf("HAY LA MISMA CANTIDAD DE CARBONO Y ALUMINIO\n");
+			printf("TOTAL DE BICICLETAS: %d\n", contBiciCar + contBiciAl);
+
+		}
+
+		retorno = 1;
+
+	}
+
+	return retorno;
+
+}
+
+
+
+int listaConteoTipoColor(eBicicleta lista[], int tam, eTipo tipos[], int tamTip, eColor colores[], int tamCol){
+	int retorno = 0;
+	int eleccion1;
+	int eleccion2;
+	int cont = 0;
+
+	if(lista != NULL && tipos != NULL && colores != NULL && tam > 0 && tamTip > 0 && tamCol > 0){
+
+		listarTipos(tipos, tamTip);
+
+		while(!get_NumEnte(&eleccion1, "Elija opcion: ","Error. opcion debe ser entre 1000 a 1003\n",1000, 1003)){
+			printf("Vuelva a ingresar dato.\n");
+		}
+
+		listarColores(colores, tamCol);
+
+		while(!get_NumEnte(&eleccion2, "Elija opcion: ","Error. opcion debe ser entre 5000 a 5004\n",5000, 5004)){
+			printf("Vuelva a ingresar dato.\n");
+		}
+
+		if(eleccion1 >= 1000 && eleccion2 >= 5000){
+
+			printf("=====================================================================================================================\n");
+			printf("\t                        ***LISTA BICICLETAS***\n");
+			printf("---------------------------------------------------------------------------------------------------------------------\n");
+			printf(" ID         MARCA             TIPO                RODADO               COLOR          MATERIAL            CLIENTE\n");
+			printf("---------------------------------------------------------------------------------------------------------------------\n");
+			for(int i = 0; i < tam; i ++){
+
+				if(!lista[i].isEmpty && lista[i].idTipo.iD == eleccion1 && lista[i].idColor.id == eleccion2){
+					moatrarBicicleta(lista[i], tipos, tamTip, colores, tamCol);
+					cont ++;
+
+				}
+			}
+			printf("=====================================================================================================================\n");
+			printf("TOTAL DE BICICLETAS: %d\n", cont);
+
+			retorno = 1;
+
+		}
+
+		else{
+
+			printf("Eleccion incorrecta.\n");
+
+		}
+
+
+
+	}
+
+	return retorno;
+
+}
+
+
+
+int totalColorId(eBicicleta bicicletas[], int tamBici, eColor colores[], int tamCol, int idCol, int* total){
+	int retorno = 0;
+	int acuCol = 0;
+
+	if(bicicletas != NULL && colores != NULL && total != NULL && tamBici > 0 && tamCol > 0){
+
+		for(int i  = 0; i < tamBici; i ++){
+
+			if(!bicicletas[i].isEmpty && bicicletas[i].idColor.id == idCol){
+
+				acuCol += 1;
+
+			}
+
+		}
+
+		*total = acuCol;
+
+		retorno = 1;
+
+	}
+
+	return retorno;
+
+}
+
+
+
+int contColSelec(eBicicleta bicicletas[], int tam, eColor colores[], int tamCol){
+	int retorno = 0;
+	int acColores[tamCol];
+	int mayor;
+	int flag = 1;
+
+	if(bicicletas != NULL && colores != NULL && tam > 0 && tamCol > 0){
+
+		for(int i = 0;  i < tamCol; i ++){
+
+			acColores[i] = 0;
+
+		}
+
+		for(int i = 0; i < tamCol; i ++){
+
+			totalColorId(bicicletas, tam, colores, tamCol, colores[i].id, &acColores[i]);
+
+		}
+
+		for(int i = 0; i < tamCol; i ++){
+
+			if(flag || acColores[i] > mayor){
+
+				mayor = acColores[i];
+				flag = 0;
+
+			}
+
+		}
+
+		printf("COLOR/ES MAS ELEGIDOS:\n");
+
+		for(int i=0; i < tamCol; i++){
+
+			if(acColores[i] == mayor){
+
+				printf("%s\n", colores[i].nombreColor);
+
+			}
+
+		}
+
+		retorno = 1;
+
+	}
+
+	return retorno;
+
+}
+
+
+
+int ordenarListaTiposBici(eBicicleta bicicletas[], int tam, int criterio){
+	int retorno = 0;
+	eBicicleta auxBicicleta;
+
+	if(bicicletas != NULL && tam > 0){
+
+		for(int i = 0; i < tam - 1; i ++){
+			for(int j = i + 1; j < tam; j ++){
+
+				if(bicicletas[i].rodado > bicicletas[j].rodado){
+
+					auxBicicleta = bicicletas[i];
+					bicicletas[i] = bicicletas[j];
+					bicicletas[j] = auxBicicleta;
+
+				}
+
+			}
+
+		}
+
+		retorno = 1;
+
+	}
+
+	return retorno;
+
+}
+
+
+
+void mostrarBiciFilaTipo(eBicicleta bicicleta, eColor colores[], int tamCol){
+	char descripColor[20];
+
+	cargaDescripColor(colores, tamCol, bicicleta.idColor.id, descripColor);
+
+	printf("%2d     %10s             %2d             %10s             %c              %10s\n", bicicleta.iD,
+																							   bicicleta.marca,
+																							   bicicleta.rodado,
+																							   descripColor,
+																							   bicicleta.material,
+																							   bicicleta.idCliente.nombre);
+
+}
+
+
+
+int mostrarBicicletaxTipo(eBicicleta bicicletas[], int tamBici, eTipo tipos[], int tamTip, eColor colores[], int tamCol, int idTipo){
+	int retorno = 0;
+	char descripTipo[20];
+	int flag = 1;
+
+	if(bicicletas != NULL && tipos != NULL && tamTip > 0 && tamTip > 0){
+
+		cargaDescripTipo(tipos, tamTip, idTipo, descripTipo);
+
+		printf("\t                                 %s\n\n", descripTipo);
+
+		printf(" ID         MARCA            RODADO               COLOR          MATERIAL            CLIENTE\n");
+		printf("---------------------------------------------------------------------------------------------------------------------\n");
+
+		for(int i = 0; i < tamBici; i ++){
+
+			if(!bicicletas[i].isEmpty && bicicletas[i].idTipo.iD == idTipo){
+
+				mostrarBiciFilaTipo(bicicletas[i], colores, tamCol);
+				flag  = 0;
+
+			}
+
+		}
+
+		if(flag){
+
+			printf("No hay bicicletas para mostrar.\n");
+
+		}
+
+		printf("---------------------------------------------------------------------------------------------------------------------\n\n");
+
+		retorno = 1;
+
+	}
+
+	return retorno;
+
+}
+
+
+
+int listaXtiposBicis(eBicicleta bicicletas[], int tamBici, eTipo tipos[], int tamTip, eColor colores[], int tamCol){
+	int retorno = 0;
+
+	if(bicicletas != NULL && tipos != NULL  && tamBici > 0 && tamTip > 0 ){
+
+		printf("=====================================================================================================================\n");
+		printf("\t                        ***LISTA BICICLETAS POR TIPO***\n");
+		printf("---------------------------------------------------------------------------------------------------------------------\n");
+
+		for(int i = 0; i < tamTip; i ++){
+
+			mostrarBicicletaxTipo(bicicletas, tamBici, tipos, tamTip, colores, tamCol, tipos[i].iD);
+
+		}
+
+		retorno = 1;
+
+	}
+
+	return retorno;
+
 }
 
 
